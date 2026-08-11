@@ -1,0 +1,22 @@
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+img = cv2.imread('RGB.jpg', 0)
+u,th1=cv2.threshold (img,127,255,cv2.THRESH_BINARY)
+u,th2=cv2.threshold (img,127,255,cv2.THRESH_BINARY_INV)
+u, th3=cv2.threshold(img,127,255,cv2.THRESH_TRUNC)
+u,th4=cv2.threshold(img,127,255,cv2.THRESH_TOZERO)
+u,th5=cv2.threshold(img,127,255,cv2.THRESH_TOZERO_INV)
+
+imagenes=[img,th1,th2, th3, th4,th5]
+titulo=['Original', 'BINARY', 'BINARY_INV', 'TRUNC', 'TOZERO', 'TOZERO_INV']
+
+for i in range(6):
+    plt.subplot(3,2,i+1)
+    plt.imshow(imagenes[i], 'gray',vmin=0,vmax=255);
+    plt.title(titulo[i])
+    plt.xticks([]), plt.yticks([])
+    
+plt.show()
+print (u)
